@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ternos</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0000006c;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2964a8;
+      color: rgba(47, 70, 97, 0.507);
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+    .product {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .product:hover {
+      transform: translateY(-10px);
+    }
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .product h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 0.5rem 0;
+    }
+    .product p {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+    .product button {
+      padding: 0.75rem;
+      background-color: #4c90e0;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .product button:hover {
+      background-color: #3971c5;
+    }
+    .cart-info {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4c90e0;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .cart-info span {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Productos</h1>
+  </header>
+  <main>
+    <div class="products">
+      <div class="product">
+        <img src="PRODUCTO1.jpeg" alt="Producto 1">
+        <h3>Producto 1</h3>
+        <p>Precio: S/829</p>
+        <button onclick="addToCart(829, 'Producto 1')">Agregar al Carrito</button>
+      </div>
+      <div class="product">
+        <img src="PRODUCTO2.jpeg" class="border border-primary-subtle" alt="Producto 2">
+        <h3>Producto 2</h3>
+        <p>Precio: S/819</p>
+        <button onclick="addToCart(819, 'Producto 2')">Agregar al Carrito</button>
+      </div>
+      <div class="product">
+        <img src="PRODUCTO3.jpeg" alt="Producto 3">
+        <h3>Producto 3</h3>
+        <p>Precio: S/1279</p>
+        <button onclick="addToCart(1279, 'Producto 3')">Agregar al Carrito</button>
+      </div>
+      <div class="product">
+        <img src="PRODUCTO4.jpeg" alt="Producto 3">
+        <h3>Producto 4</h3>
+        <p>Precio: S/549.90</p>
+        <button onclick="addToCart(549.90, 'Producto 3')">Agregar al Carrito</button>
+      </div>
+      <div class="product">
+        <img src="PRODUCTO5.jpeg" alt="Producto 3">
+        <h3>Producto 5</h3>
+        <p>Precio: S/1139</p>
+        <button onclick="addToCart(1139, 'Producto 3')">Agregar al Carrito</button>
+      </div>
+      <div class="product">
+        <img src="PRODUCTO6.jpeg" alt="Producto 3">
+        <h3>Producto 6</h3>
+        <p>Precio: S/799</p>
+        <button onclick="addToCart(799, 'Producto 3')">Agregar al Carrito</button>
+      </div>
+     
+    </div>
+  </main>
+  <div class="cart-info" id="cart-info" onclick="viewCart()">
+    🛒 <span id="cart-count">0</span> artículos
+  </div>
+
+  <script>
+    let cartCount = 0;
+
+    // Función para agregar productos al carrito
+    function addToCart(price, productName) {
+      cartCount++;
+      document.getElementById('cart-count').textContent = cartCount;
+      alert(`${productName} agregado al carrito. Precio: $${price}`);
+    }
+
+    // Función para ver el carrito (puedes expandir esta función para mostrar detalles del carrito)
+    function viewCart() {
+      alert(`Tienes ${cartCount} productos en tu carrito.`);
+    }
+  </script>
+</body>
+</html>

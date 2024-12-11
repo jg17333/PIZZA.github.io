@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4c90e0;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .cart {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+    .cart p {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+      color: #333;
+    }
+    .cart span {
+      font-weight: bold;
+    }
+    .product-list {
+      margin-top: 2rem;
+      width: 100%;
+    }
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      background-color: #f1f1f1;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    .product-item h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    .product-item p {
+      margin: 0;
+      font-size: 1rem;
+      color: #777;
+    }
+    .product-item button {
+      background-color: #ff4f4f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    .product-item button:hover {
+      background-color: #e04a4a;
+    }
+    .cart-info-updated {
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .cart-info {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4c90e0;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .cart-info span {
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Carrito de Compras</h1>
+  </header>
+  <main>
+    <div class="cart">
+      <p>Artículos en el carrito: <span id="cartCount">0</span></p>
+      <p>Total: $<span id="cartTotal">0</span></p>
+    </div>
+    <div class="product-list">
+      <div class="product-item">
+        <div>
+          <h3>Producto 1</h3>
+          <p>Precio: s/829</p>
+        </div>
+        <button onclick="addToCart(10, 'Producto 1')">Agregar</button>
+      </div>
+      <div class="product-item">
+        <div>
+          <h3>Producto 2</h3>
+          <p>Precio: S/819</p>
+        </div>
+        <button onclick="addToCart(20, 'Producto 2')">Agregar</button>
+      </div>
+      <div class="product-item">
+        <div>
+          <h3>Producto 3</h3>
+          <p>Precio: S/1279</p>
+        </div>
+        <button onclick="addToCart(10, 'Producto 3')">Agregar</button>
+      </div>
+      <div class="product-item">
+        <div>
+          <h3>Producto 4</h3>
+          <p>Precio: S/549.90</p>
+        </div>
+        <button onclick="addToCart(10, 'Producto 4')">Agregar</button>
+      </div>
+      <div class="product-item">
+        <div>
+          <h3>Producto 5</h3>
+          <p>Precio: S/1139</p>
+        </div>
+        <button onclick="addToCart(10, 'Producto 5')">Agregar</button>
+      </div>
+      <div class="product-item">
+        <div>
+          <h3>Producto 6</h3>
+          <p>Precio: S/799</p>
+        </div>
+        <button onclick="addToCart(10, 'Producto 6')">Agregar</button>
+      </div>
+    </div>
+  </main>
+
+  <div class="cart-info" id="cart-info" onclick="viewCart()">
+    🛒 <span id="cart-count">0</span> artículos
+  </div>
+
+  <script>
+    let cartCount = 0;
+    let cartTotal = 0;
+
+    // Función para agregar productos al carrito
+    function addToCart(price, productName) {
+      cartCount++;
+      cartTotal += price;
+      updateCartInfo();
+      alert(`${productName} agregado al carrito. Precio: $${price}`);
+    }
+
+    // Actualiza la información del carrito (conteo y total)
+    function updateCartInfo() {
+      document.getElementById('cartCount').textContent = cartCount;
+      document.getElementById('cartTotal').textContent = cartTotal.toFixed(2);
+      document.getElementById('cart-count').textContent = cartCount;
+      document.querySelector('.cart').classList.add('cart-info-updated');
+      setTimeout(() => {
+        document.querySelector('.cart').classList.remove('cart-info-updated');
+      }, 1000);
+    }
+
+    // Función para ver el carrito (expandir esta función según necesidades)
+    function viewCart() {
+      alert(`Tienes ${cartCount} productos en tu carrito. Total: $${cartTotal.toFixed(2)}`);
+    }
+  </script>
+</body>
+</html>
